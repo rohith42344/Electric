@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Electrical Engineering Study Hub</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0077cc" id="meta-theme-color">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite">Copied to clipboard</div>
+
+  <!-- Register Page -->
+  <div id="registerPage" class="page active">
+    <header>
+      <h1>Electrical Engineering Study Hub</h1>
+    </header>
+
+    <div class="container">
+      <div class="card">
+        <h2>Student Registration</h2>
+        <p class="muted small">Enter your name to continue. This demo stores basic data in your browser only.</p>
+        <div class="controls">
+          <input id="studentName" placeholder="Your name" aria-label="Your name" />
+          <button id="enterBtn">Enter Website</button>
+        </div>
+        <div class="small muted">Or try with name "Student"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Home Page -->
+  <div id="homePage" class="page">
+    <header>
+      <h1>Electrical Engineering Study Hub</h1>
+      <h3 style="margin:6px 0">Welcome, <span id="username" contenteditable="false">Student</span></h3>
+    </header>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="card col">
+          <div style="display:flex;gap:8px;align-items:center;justify-content:space-between">
+            <div>
+              <strong>Quick Actions</strong>
+              <div class="small muted">Toggle features & search</div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <label class="small muted" for="darkModeToggle">Dark</label>
+              <input id="darkModeToggle" type="checkbox" />
+              <button id="exportBtn" title="Download basic profile">Export</button>
+              <button class="copy-small" id="copyProfileBtn">Copy Profile</button>
+            </div>
+          </div>
+
+          <div style="margin-top:12px">
+            <input id="subjectSearch" placeholder="Search subjects..." />
+          </div>
+
+          <div style="margin-top:12px" class="row">
+            <select id="semester">
+              <option value="">Select Semester</option>
+              <option value="1">1st Semester</option>
+              <option value="2">2nd Semester</option>
+              <option value="3">3rd Semester</option>
+              <option value="4">4th Semester</option>
+              <option value="5">5th Semester</option>
+              <option value="6">6th Semester</option>
+            </select>
+
+            <select id="subjects">
+              <option value="">Select Subject</option>
+            </select>
+
+            <button id="notesBtn">Notes</button>
+          </div>
+        </div>
+
+        <div class="card" style="width:340px">
+          <h3>Student Tools</h3>
+          <div class="grid">
+            <button id="quizBtn">MCQ Quiz</button>
+            <button id="attendanceBtn">Attendance Calc</button>
+            <button id="cgpaBtn">CGPA Calc</button>
+            <button id="formulaBtn">Formulas & Unit Converter</button>
+            <button id="resumeBtn">Resume Builder</button>
+            <button id="chatBtn">AI Chatbot</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:12px"></div>
+
+      <div class="card">
+        <h2>Banner</h2>
+        <div class="banner">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475" alt="electrical">
+          <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780" alt="lab">
+          <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e" alt="lecture">
+        </div>
+      </div>
+
+      <div class="card-grid" style="margin-top:12px">
+        <div class="card feature">
+          <h3>Notes & PDFs</h3>
+          <p class="muted small">Sample notes by subject — click download</p>
+          <div id="notesList"></div>
+        </div>
+
+        <div class="card feature">
+          <h3>Video Lectures</h3>
+          <p class="small muted">Embedded sample lectures</p>
+          <div id="videosList"></div>
+        </div>
+
+        <div class="card feature">
+          <h3>Previous Question Papers</h3>
+          <div id="papersList"></div>
+        </div>
+
+        <div class="card feature">
+          <h3>Electrical Formulas</h3>
+          <ul>
+            <li>V = I × R</li>
+            <li>P = V × I</li>
+            <li>P = √3 × V × I × PF</li>
+            <li>E = P × t</li>
+            <li>Transformer Ratio = V1/V2</li>
+          </ul>
+        </div>
+
+        <div class="card feature">
+          <h3>EV Project Ideas</h3>
+          <ul>
+            <li>Smart EV Battery Monitoring System</li>
+            <li>Solar EV Charging Station</li>
+            <li>IoT Energy Meter</li>
+            <li>EV Fault Detection System</li>
+          </ul>
+        </div>
+
+        <div class="card feature">
+          <h3>Jobs & Internships</h3>
+          <p class="muted small">This demo shows placeholders; connect a backend to list real openings.</p>
+          <ul>
+            <li>EV Startup - Intern (Remote)</li>
+            <li>Power Utility - Graduate Engineer Trainee</li>
+            <li>Embedded Systems - Intern</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Modal-like sections -->
+      <div id="notesModal" class="card modal" style="margin-top:12px;display:none">
+        <h3>Notes / Downloads</h3>
+        <div id="notesModalList"></div>
+        <div style="margin-top:10px"><button class="closeBtn" data-target="notesModal">Close</button></div>
+      </div>
+
+      <div id="quizModal" class="card modal" style="margin-top:12px;display:none">
+        <h3>MCQ Quiz</h3>
+        <div id="quizArea"></div>
+        <div style="margin-top:10px"><button class="closeBtn" data-target="quizModal">Close</button></div>
+      </div>
+
+      <div id="attendanceModal" class="card modal" style="margin-top:12px;display:none">
+        <h3>Attendance Calculator</h3>
+        <div>
+          <label>Classes Attended: <input id="attended" type="number" min="0" value="0" /></label><br/>
+          <label>Total Classes: <input id="total" type="number" min="1" value="0" /></label><br/>
+          <label>Target %: <input id="target" type="number" min="0" max="100" value="75" /></label><br/>
+          <div style="margin-top:8px"><button id="calcAttendanceBtn">Calculate</button></div>
+          <div id="attResult" style="margin-top:8px"></div>
+        </div>
+        <div style="margin-top:10px"><button class="closeBtn" data-target="attendanceModal">Close</button></div>
+      </div>
+
+      <div id="cgpaModal" class="card modal" style="margin-top:12px;display:none">
+        <h3>CGPA Calculator</h3>
+        <div>
+          <div class="small muted">Enter credits and grade points for each subject</div>
+          <div id="cgpaInputs"></div>
+          <div style="margin-top:8px"><button id="addCgpaRowBtn">Add Subject</button> <button id="calcCgpaBtn">Calculate CGPA</button></div>
+          <div id="cgpaResult" style="margin-top:8px"></div>
+        </div>
+        <div style="margin-top:10px"><button class="closeBtn" data-target="cgpaModal">Close</button></div>
+      </div>
+
+      <div id="formulaModal" class="card modal" style="margin-top:12px;display:none">
+        <h3>Formula & Unit Converter</h3>
+        <div>
+          <h4>Power Calculator</h4>
+          <label>Voltage (V): <input id="fV" type="number" value="230" /></label><br/>
+          <label>Current (I): <input id="fI" type="number" value="5" /></label><br/>
+          <div style="margin-top:6px"><button id="calcPowerBtn">Calc P = V × I</button></div>
+          <div id="fResult"></div>
+
+          <hr/>
+          <h4>Unit Converter (Energy)</h4>
+          <label>Value: <input id="uVal" type="number" value="1" /></label>
+          <select id="uFrom"><option value="kWh">kWh</option><option value="J">J</option></select>
+          <select id="uTo"><option value="J">J</option><option value="kWh">kWh</option></select>
+          <div style="margin-top:6px"><button id="convertUnitBtn">Convert</button></div>
+          <div id="uResult"></div>
+        </div>
+        <div style="margin-top:10px"><button class="closeBtn" data-target="formulaModal">Close</button></div>
+      </div>
+
+      <div id="resumeModal" class="card modal" style="margin-top:12px;display:none">
+        <h3>Resume Builder</h3>
+        <div>
+          <label>Name: <input id="resName" /></label><br/>
+          <label>Email: <input id="resEmail" /></label><br/>
+          <label>Education: <textarea id="resEdu" rows="3"></textarea></label><br/>
+          <label>Skills: <textarea id="resSkills" rows="2"></textarea></label><br/>
+          <div style="margin-top:8px">
+            <button id="downloadResumeBtn">Download Resume</button>
+            <button class="copy-small" id="copyResumeBtn">Copy Resume</button>
+          </div>
+        </div>
+        <div style="margin-top:10px"><button class="closeBtn" data-target="resumeModal">Close</button></div>
+      </div>
+
+      <div id="chatModal" class="card modal" style="margin-top:12px;display:none">
+        <h3>AI Chatbot (Local)</h3>
+        <div class="chatbox" id="chatbox"></div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <input id="chatInput" placeholder="Ask about formulas, study tips, or projects..." />
+          <button id="sendChatBtn">Send</button>
+          <button class="copy-small" id="copyAllChatBtn">Copy All Chat</button>
+        </div>
+        <div style="margin-top:10px"><button class="closeBtn" data-target="chatModal">Close</button></div>
+      </div>
+
+      <div id="installArea" style="margin-top:12px"></div>
+
+      <footer class="muted small">Built for demo — data stays in your browser. Connect a backend (Firebase) to persist data across devices.</footer>
+    </div>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
